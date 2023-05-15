@@ -1,6 +1,6 @@
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 import dash_bootstrap_components as dbc
 # import dash_renderer as drr
 import numpy as np
@@ -11,10 +11,11 @@ from os.path import join
 import plotly_express as px
 import flask
 import time
-
+import os 
+import sys
 GITHUB_LOGO = 'GitHub-Mark-120px-plus.png'
-
-datapath = './Data'
+current_dir=sys.path.append(os.path.dirname(__file__))
+datapath = "/Users/saikumarchinthakayala/Downloads/interactive-nuclear-chart-master/Data"
 dimensions = ['x', 'y', 'Color']
 dim_info = [
     'The nuclear property to plot on the horizontal axis',
@@ -122,7 +123,7 @@ layout_index = html.Div([
 
 layout_graphs = html.Div([
     # dcc.Store(id='memory'),
-    dbc.CardDeck(
+    dbc.CardLink(
     [
         dbc.Card(
             [
@@ -131,7 +132,7 @@ layout_graphs = html.Div([
                 ]),
                 dbc.CardBody(
                     [
-                        dbc.CardText("""
+                        dbc.FormText("""
                         This chart is interactive!
                         Click and drag over a region of the chart to zoom in.
                         Double click to zoom out. Hover over the chart and click
@@ -169,7 +170,7 @@ layout_graphs = html.Div([
                 dbc.CardHeader('Scatter Plot'),
                 dbc.CardBody(
                     [
-                        dbc.CardText("""
+                        dbc.FormText("""
                         Plot different nuclear properties against one another.
                         Find interesting patterns by changing the x and y axes and color options.
                         Click and drag to select data, which will highlight the corresponding points
